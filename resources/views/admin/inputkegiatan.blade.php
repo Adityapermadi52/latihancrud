@@ -12,10 +12,11 @@
             <div class="grid grid-cols-3 gap-15">
                         <div class="col-span-3 sm:col-span-2">
               <label for="last_name" class="block text-sm font-medium text-gray-700">Nama Kegiatan</label>
-                <input type="text" name="Nama" id="Nama" autocomplete="family-name" value="{{(isset($kegiatan))?$kegiatan->Nama:old('Nama') }}" class="mt-1  @error('Nama') border-red-500 @enderror  focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" placeholder="Ketik Nama Kegiatan">
-              <div class="text-xs text-red-600">@error('Nama'){{$message}} @enderror</div>
+                <input type="text" name="nama" id="nama" autocomplete="family-name" value="{{(isset($kegiatan))?$kegiatan->nama:old('nama') }}" class="mt-1  @error('nama') border-red-500 @enderror  focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" placeholder="Ketik nama Kegiatan">
+              <div class="text-xs text-red-600">@error('nama'){{$message}} @enderror</div>
               </div>
             </div>
+
             <div>
             <div class="grid grid-cols-3 gap-15">
                         <div class="col-span-3 sm:col-span-1">
@@ -23,11 +24,24 @@
                                 Tanggal Kegiatan
                             </label>
                             <div class="mt-1 flex rounded-md shadow-sm">
-                                <input type="date" name="waktu" id="waktu" class="@error('waktu') border-red-600 @enderror focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300  text-black">
+                                <input type="date" name="waktu" id="waktu" value="{{(isset($kegiatan))?$kegiatan->waktu:old('waktu') }}" class="@error('waktu') border-red-600 @enderror focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300  text-black">
                             </div>
                             <div class="text-xs text-red-500"> @error('waktu') {{$message}} @enderror</div>
                         </div>
-                    </div>
+                    </div><br>
+
+                <div>
+                <label for="about" class="block text-sm font-medium text-gray-700">
+                Deskripsi
+              </label>
+              <div class="mt-1">
+                <textarea name="description" rows="8" class="@error('description') shadow-sm focus:ring-indigo-500 @enderror focus:border-indigo-500 mt-1 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="Ketik Deskripsi Kegiatan">
+                {{(isset($kegiatan))?$kegiatan->description:old('description') }}
+                </textarea>
+              </div>
+               <div class="text-xs text-red-500"> @error('description') {{$message}} @enderror</div>
+            </div> <br>
+                
               <label class="block text-sm font-medium text-gray-700">
                 Gambar
               </label>

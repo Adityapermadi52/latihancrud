@@ -31,24 +31,17 @@
         <script src="{{ mix('js/app.js') }}" defer></script>
     </head>
         <body class="bg-gray-100 font-family-karla flex">
-
         <aside class="relative bg-sidebar h-screen w-64 hidden sm:block shadow-xl">
             <div class="p-6">
-                <a href="index.html" class="text-white text-3xl font-semibold uppercase hover:text-gray-300">Admin</a>
-                <button class="w-full bg-white cta-btn font-semibold py-2 mt-5 rounded-br-lg rounded-bl-lg rounded-tr-lg shadow-lg hover:shadow-xl hover:bg-gray-300 flex items-center justify-center">
-                    <i class="fas fa-plus mr-3"></i> New Report
-                </button>
+            <center>
+               <img src="{{ asset('dashboard/') }}/assets/img/logolokapom.png" alt="" width="100px"></center>
             </div>
             <nav class="text-white text-base font-semibold pt-3">
-            <a href="{{route('dashboard')}}"  class=" flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
+            <a href="/"  class=" flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
                     <i class="fas fa-tachometer-alt mr-3"></i>
                     Dashboard
                 </a>
-                
-                <a href="{{route('home')}}" class="flex items-center  text-white py-4 pl-6 nav-item">
-                    <i class="fas fa-sticky-note mr-3"></i>
-                    Data Mahasiswa PKL
-                </a>
+                  
                 <a href="{{route('pegawai.index')}}" class="flex items-center text-white py-4 pl-6 nav-item">
                     <i class="fas fa-sticky-note mr-3"></i>
                     Data Pegawai
@@ -57,7 +50,42 @@
                     <i class="fas fa-sticky-note mr-3"></i>
                     Data Kegiatan
                 </a>
-               
+                <a href="{{route('rencanastrategis.index')}}" class="flex items-center text-white py-4 pl-6 nav-item">
+                    <i class="fas fa-sticky-note mr-3"></i>
+                   Rencana Strategis
+                </a>
+                <a href="{{route('tahunan.index')}}" class="flex items-center text-white py-4 pl-6 nav-item">
+                    <i class="fas fa-sticky-note mr-3"></i>
+                   Laporan Tahunan
+                </a>
+                 <a href="{{route('semester.index')}}" class="flex items-center text-white py-4 pl-6 nav-item">
+                    <i class="fas fa-sticky-note mr-3"></i>
+                   Laporan Semester
+                </a>
+                 <a href="{{route('triwulan.index')}}" class="flex items-center text-white py-4 pl-6 nav-item">
+                    <i class="fas fa-sticky-note mr-3"></i>
+                   Laporan Triwulan
+                </a>
+                  <a href="{{route('kinerja.index')}}" class="flex items-center text-white py-4 pl-6 nav-item">
+                    <i class="fas fa-sticky-note mr-3"></i>
+                   Laporan Kinerja
+                </a>
+                 <a href="{{route('PPID.index')}}" class="flex items-center text-white py-4 pl-6 nav-item">
+                    <i class="fas fa-sticky-note mr-3"></i>
+                   Laporan PPID
+                </a>
+                  <!-- <a href="{{route('informasi.index')}}" class="flex items-center text-white py-4 pl-6 nav-item">
+                    <i class="fas fa-sticky-note mr-3"></i>
+                   Layanan Informasi
+                </a>
+                <a href="{{route('pengaduan.index')}}" class="flex items-center text-white py-4 pl-6 nav-item">
+                    <i class="fas fa-sticky-note mr-3"></i>
+                   Layanan Pengaduan
+                </a>
+                 <a href="{{route('contact.index')}}" class="flex items-center text-white py-4 pl-6 nav-item">
+                    <i class="fas fa-sticky-note mr-3"></i>
+                   Contact
+                </a> -->
             </nav>
         </aside>
 
@@ -80,48 +108,7 @@
                     </button>
                 </div>
 
-                <!-- Dropdown Nav -->
-                <nav :class="isOpen ? 'flex': 'hidden'" class="flex flex-col pt-4">
-                    <a href="index.html" class="flex items-center active-nav-link text-white py-2 pl-4 nav-item">
-                        <i class="fas fa-tachometer-alt mr-3"></i>
-                        LOKAPOM
-                    </a>
-                    <a href="blank.html" class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
-                        <i class="fas fa-sticky-note mr-3"></i>
-                        Blank Page
-                    </a>
-                    <a href="tables.html" class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
-                        <i class="fas fa-table mr-3"></i>
-                        Tables
-                    </a>
-                    <a href="forms.html" class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
-                        <i class="fas fa-align-left mr-3"></i>
-                        Forms
-                    </a>
-                    <a href="tabs.html" class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
-                        <i class="fas fa-tablet-alt mr-3"></i>
-                        Tabbed Content
-                    </a>
-                    <a href="calendar.html" class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
-                        <i class="fas fa-calendar mr-3"></i>
-                        Calendar
-                    </a>
-                    <a href="#" class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
-                        <i class="fas fa-cogs mr-3"></i>
-                        Support
-                    </a>
-                    <a href="#" class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
-                        <i class="fas fa-user mr-3"></i>
-                        My Account
-                    </a>
-                    <a href="#" class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
-                        <i class="fas fa-sign-out-alt mr-3"></i>
-                        Sign Out
-                    </a>
-                    <button class="w-full bg-white cta-btn font-semibold py-2 mt-3 rounded-lg shadow-lg hover:shadow-xl hover:bg-gray-300 flex items-center justify-center">
-                        <i class="fas fa-arrow-circle-up mr-3"></i> Upgrade to Pro!
-                    </button>
-                </nav>
+               
                 <!-- <button class="w-full bg-white cta-btn font-semibold py-2 mt-5 rounded-br-lg rounded-bl-lg rounded-tr-lg shadow-lg hover:shadow-xl hover:bg-gray-300 flex items-center justify-center">
                     <i class="fas fa-plus mr-3"></i> New Report
                 </button> -->
@@ -132,7 +119,7 @@
                     {{$slot}}
                 </main>
         
-                <footer class="bg-green-600 border-t border-gray-400 shadow">	
+                <footer class="bg-black border-t border-gray-400 shadow">	
                 <div class="container max-w-md mx-auto flex py-8">
 
                     <div class="w-full mx-auto flex flex-wrap">
@@ -142,7 +129,7 @@
                                 <h2 class="font-bold font-bold text-gray-100">
                                     LOKA PENGAWAS OBAT DAN MAKANAN DI KABUPATEN BULELENG</h2>
                                  <p class="font-bold font-bold text-gray-100">
-                                    Jalan GUNUNG AGUNG NOMOR 25 Singaraja  
+                                    Jalan GUNUNG AGUNG NOMOR 8 Singaraja  
                                 </p>
                             </div>
                         </div>

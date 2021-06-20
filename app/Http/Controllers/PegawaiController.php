@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\datapegawai;
-use Illuminate\Http\Request;
+use App\Models\Datapegawai;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class PegawaiController extends Controller
@@ -16,8 +16,8 @@ class PegawaiController extends Controller
      */
     public function index()
     {
-        $pegawai=datapegawai::all();
-        $title="Data Pegawai";
+        $pegawai=Datapegawai::paginate(5);
+        $title="Daftar Pegawai";
         return view('admin.berandapegawai',compact('title','pegawai'));
     }
 
@@ -28,7 +28,7 @@ class PegawaiController extends Controller
      */
     public function create()
     {
-        $title="INPUT PEGAWAI";
+         $title="INPUT PEGAWAI";
         return view('admin.inputpegawai',compact('title'));
     }
 
@@ -40,21 +40,21 @@ class PegawaiController extends Controller
      */
     public function store(Request $request)
     {
-        $message=[
+         $message=[
         'required'=> 'Kolom :attribute Harus Lengkap',
         'date'=>'Kolom :attribute Harus Tanggal',
         'numeric'=>'Kolom :attribute Harus Angka',
         ];
         $validasi=$request->validate([
-            'NIP'=>'required|unique:datapegawais|max:255',
-            'Nama'=>'required',
+            'nip'=>'required|unique:datapegawais|max:255',
+            'nama'=>'required',
             'jabatan'=>'required',
             'gambar'=>'required|mimes:jpg,bmp,png|max:512'
         ],$message);
         $path = $request->file('gambar')->store('gambars');
         $validasi['user_id']=Auth::id();
         $validasi['gambar']=$path;
-        datapegawai::create($validasi);
+        Datapegawai::create($validasi);
         return redirect('pegawai')->with('success','Data Berhasil Tersimpan');
     }
 
@@ -66,7 +66,8 @@ class PegawaiController extends Controller
      */
     public function show($id)
     {
-        //
+        $pegawai=Datapegawai::findOrFail($id);
+         return view('admin.show',compact('pegawai'));
     }
 
     /**
@@ -77,7 +78,7 @@ class PegawaiController extends Controller
      */
     public function edit($id)
     {
-        $pegawai=datapegawai::find($id);
+        $pegawai=Datapegawai::find($id);
         $title="Edit Pegawai";
         return view('admin.inputpegawai',compact('title','pegawai'));
     }
@@ -91,25 +92,25 @@ class PegawaiController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $message=[
+          $message=[
             'required'=> 'Kolom :attribute Harus Lengkap',
             'date'=>'Kolom :attribute Harus Tanggal',
             'numeric'=>'Kolom :attribute Harus Angka',
             ];
             $validasi=$request->validate([
-                'NIP'=>'required|unique:datapegawais|max:255',
-                'Nama'=>'required',
+                'nip'=>'required|unique:datapegawais|max:255',
+                'nama'=>'required',
                 'jabatan'=>'required'
             ],$message);
             if($request->hasFile('gambar')){
             $fileName=time().$request->file('gambar')->getClientOriginalName();
             $path = $request->file('gambar')->storeAs('gambars',$fileName);
                 $validasi['gambar']=$path;
-                $pegawai=datapegawai::find($id);
+                $pegawai=Datapegawai::find($id);
                 Storage::delete($pegawai->gambar);
             }
             $validasi['user_id']=Auth::id();
-            datapegawai::where('id',$id)->update($validasi);
+            Datapegawai::where('id',$id)->update($validasi);
             return redirect('pegawai')->with('success','Data Berhasil Terupdate');
     }
 
@@ -121,11 +122,11 @@ class PegawaiController extends Controller
      */
     public function destroy($id)
     {
-        $pegawai=datapegawai::find($id);
+         $pegawai=Datapegawai::find($id);
         if($pegawai != null){
             Storage::delete($pegawai->gambar);
-            $pegawai=datapegawai::find($pegawai->id);
-            datapegawai::where('id',$id)->delete();
+            $pegawai=Datapegawai::find($pegawai->id);
+            Datapegawai::where('id',$id)->delete();
         }
         return redirect('pegawai')->with('sucess','Data berhasil terhapus');
     }

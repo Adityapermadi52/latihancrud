@@ -23,32 +23,49 @@
                   <th>GAMBAR</th>
                   <th>AKSI</th>
               </tr>
-          </thead>
-          <tbody class=" text-center bg-white divide-y divide-gray-200">
+             <tbody class=" text-center bg-white divide-y divide-gray-200">
           <?php $no=1; ?>
             @foreach ($pegawai as $item)
               <tr>
                     <td><input type="checkbox" name="" id=""></td>
                     <td>{{$no}}</td>
-                    <td>{{$item->NIP}}</td>
-                    <td>{{$item->Nama}}</td>
+                    <td>{{$item->nip}}</td>
+                    <td>{{$item->nama}}</td>
                     <td>{{$item->jabatan}}</td>
                     <td align="center">
-                      <img src="{{asset('storage/' .$item->gambar)}}" class="w-16" alt="">
+                      <img src="{{asset('storage/'.$item->gambar)}}" class="w-16" alt="">  
                     </td>
                     <td>
-                        <form action="{{route('pegawai.destroy',$item->id)}}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                         <a href="{{route('pegawai.edit',$item->id)}}" class="btn btn-xs p-2 rounded bg-green-200 m-3 hover:bg-blue hover:text-blue-900">Edit</a>
-                          <button type="submit" class="btn btn-xs p-2 rounded bg-red-500 m-3 hover:bg-red hover:text-white-900">Del</button>
-                        </form>
+                                                                @if (auth()->user()->level == 1)
+                                            <form action="{{ route('pegawai.destroy', $item->id) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <a href="{{ route('pegawai.edit', $item->id) }}"
+                                                    class="px-4 py-1 mr-1 text-sm rounded text-green-600 border border-yellow-500 hover:text-white hover:bg-yellow-600">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                                <button
+                                                    class="px-4 py-1 text-sm rounded text-red-600 border border-yellow-500 hover:text-white hover:bg-red-600">
+                                                    <i class="fas fa-trash-alt"></i>
+                                                </button>
+                                                <a href="{{ route('pegawai.show', $item->id) }}"
+                                                    class="px-4 py-1 text-sm rounded text-green-600 border border-yellow-500 hover:text-white hover:bg-yellow-600">
+                                                    <i class="fas fa-info"></i>
+                                                </a>
+                                            </form>
+                                        @elseif(auth()->user()->level==2)
+                                            <a href="{{ route('pegawai.show', $item->id) }}"
+                                                class="px-4 py-1 text-sm rounded text-green-600 border border-yellow-500 hover:text-white hover:bg-yellow-600">
+                                                <i class="fas fa-info"></i>
+                                            </a>
+                                        @endif
                     </td>
               </tr>
                 <?php $no++; ?>
             @endforeach
           </tbody>
         </table>
+        {{$pegawai->links()}}
         </div>
     </div>
 </x-template-layout>

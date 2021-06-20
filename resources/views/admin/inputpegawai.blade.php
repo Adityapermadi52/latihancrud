@@ -15,7 +15,7 @@
                   NIP
                 </label>
                 <div class="mt-1 flex rounded-md shadow-sm">
-                  <input type="text" name="NIP" value="{{(isset($pegawai))?$pegawai->NIP:old('NIP')}}" class="@error('NIP') border-red-500 @enderror focus:ring-indigo-500 focus:border-indigo-500   flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300" placeholder="NIP">
+                  <input type="text" name="nip" value="{{(isset($pegawai))?$pegawai->nip:old('nip')}}" class="@error('nip') border-red-500 @enderror focus:ring-indigo-500 focus:border-indigo-500   flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300" placeholder="NIP">
                 </div>
                     <div class="text-xs text-red-600">@error('nip'){{$message}} @enderror</div>
               </div>
@@ -25,8 +25,8 @@
             <div class="grid grid-cols-3 gap-15">
                         <div class="col-span-3 sm:col-span-2">
               <label for="last_name" class="block text-sm font-medium text-gray-700">Nama</label>
-                <input type="text" name="Nama" id="Nama" autocomplete="family-name" value="{{(isset($pegawai))?$pegawai->Nama:old('Nama') }}" class="mt-1  @error('Nama') border-red-500 @enderror  focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" placeholder="Nama">
-              <div class="text-xs text-red-600">@error('Nama'){{$message}} @enderror</div>
+                <input type="text" name="nama" id="nama" autocomplete="family-name" value="{{(isset($pegawai))?$pegawai->nama:old('nama') }}" class="mt-1  @error('nama') border-red-500 @enderror  focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" placeholder="nama">
+              <div class="text-xs text-red-600">@error('nama'){{$message}} @enderror</div>
               </div>
             </div><br>
             <div>
@@ -36,12 +36,15 @@
                                 Jabatan
                             </label>
                             <div class="mt-1 flex rounded-md shadow-sm">
-                                <select name="jabatan" id="jabatan" class="@error('jabatan') border-red-600 @enderror focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300">
+                                <select name="jabatan" id="jabatan" value="{{(isset($pegawai))?$pegawai->jabatan:old('jabatan') }}" class="@error('jabatan') border-red-600 @enderror focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300">
                                     <option value="">Masukan Pilihan</option>
                                     <option value="Kepala Loka POM Buleleng">Kepala Loka POM Buleleng</option>
                                     <option value="PFM Ahli Muda">PFM Ahli Muda</option>
+                                    <option value="Verifikator Keuangan">Verifikator Keuangan</option>
                                     <option value="PFM Ahli Pertama">PFM Ahli Pertama</option>
-                                    <option value="PFM Ahli Pertama">Calon Pranata Komputer Terampil</option>
+                                    <option value="Pramubakti">Pramubakti</option>
+                                    <option value="Fungsional Umum">Fungsional Umum</option>
+                                    <option value="PFM Ahli Pertama">Pranata Komputer Terampil</option>
                                     <option value="Analis Kepegawaian Pelaksana Lanjutan">Analis Kepegawaian Pelaksana Lanjutan</option>
                                 </select>
                             </div>

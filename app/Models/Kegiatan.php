@@ -7,11 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Kegiatan extends Model
 {
-    use HasFactory;
+        use HasFactory;
         // protected $table='Kegiatan';
         //  protected $primaryKey = ' id ';
 
     protected $fillable=[
-        'user_id',"Nama",'waktu','gambar'
+        'user_id',"nama",'waktu','description','gambar'
     ];
 }

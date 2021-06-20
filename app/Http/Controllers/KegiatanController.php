@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
+
 class KegiatanController extends Controller
 {
     /**
@@ -27,7 +28,7 @@ class KegiatanController extends Controller
      */
     public function create()
     {
-        $title="INPUT KEGIATAN";
+         $title="INPUT KEGIATAN";
         return view('admin.inputkegiatan',compact('title'));
     }
 
@@ -39,14 +40,15 @@ class KegiatanController extends Controller
      */
     public function store(Request $request)
     {
-        $message=[
+         $message=[
             'required'=> 'Kolom :attribute Harus Lengkap',
             'date'=>'Kolom :attribute Harus Tanggal',
             'numeric'=>'Kolom :attribute Harus Angka',
             ];
             $validasi=$request->validate([
-                'Nama'=>'required',
+                'nama'=>'required',
                 'waktu'=>'required',
+                'description'=>'required',
                 'gambar'=>'required|mimes:jpg,bmp,png|max:512'
             ],$message);
             $path = $request->file('gambar')->store('gambars1');
@@ -64,7 +66,8 @@ class KegiatanController extends Controller
      */
     public function show($id)
     {
-        //
+         $kegiatan=Kegiatan::findOrFail($id);
+         return view('admin.kegiatanshow',compact('kegiatan'));
     }
 
     /**
@@ -89,15 +92,15 @@ class KegiatanController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $message=[
+          $message=[
             'required'=> 'Kolom :attribute Harus Lengkap',
             'date'=>'Kolom :attribute Harus Tanggal',
             'numeric'=>'Kolom :attribute Harus Angka',
             ];
             $validasi=$request->validate([
-                'Nama'=>'required',
+                'nama'=>'required',
                 'waktu'=>'required',
-                'gambar'=>'required|mimes:jpg,bmp,png|max:512'
+                'description'=>'required'   
             ],$message);
             if($request->hasFile('gambar')){
             $fileName=time().$request->file('gambar')->getClientOriginalName();
@@ -119,7 +122,7 @@ class KegiatanController extends Controller
      */
     public function destroy($id)
     {
-        $kegiatan=Kegiatan::find($id);
+         $kegiatan=Kegiatan::find($id);
         if($kegiatan != null){
             Storage::delete($kegiatan->gambar);
             $kegiatan=Kegiatan::find($kegiatan->id);
@@ -127,4 +130,4 @@ class KegiatanController extends Controller
         }
         return redirect('kegiatan')->with('sucess','Data berhasil terhapus');
     }
-    }
+}
